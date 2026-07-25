@@ -558,7 +558,7 @@ export default function Home() {
     setIsGeneratingSummary(true);
     updateActiveConv((conv) => ({
       ...conv,
-      summary: null,
+      summary: undefined,
       updatedAt: Date.now(),
     }));
     try {
