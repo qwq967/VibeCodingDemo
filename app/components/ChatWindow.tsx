@@ -69,7 +69,7 @@ export default function ChatWindow({
               const isAsst = msg.role === "assistant";
               const hasSuggestion = isAsst && hasActionSuggestion ? hasActionSuggestion(msg.content) : false;
               const suggestionText = isAsst && hasSuggestion && extractActionSuggestion
-                ? extractActionSuggestion(msg.content)
+                ? (extractActionSuggestion(msg.content) ?? undefined)
                 : undefined;
               return (
                 <MessageBubble
