@@ -68,9 +68,11 @@ export default function ChatWindow({
             {messages.map((msg) => {
               const isAsst = msg.role === "assistant";
               const hasSuggestion = isAsst && hasActionSuggestion ? hasActionSuggestion(msg.content) : false;
-              const suggestionText = isAsst && hasSuggestion && extractActionSuggestion
-                ? (extractActionSuggestion(msg.content) ?? undefined)
-                : undefined;
+              let suggestionText: string | undefined = undefined;
+              if (isAsst && hasSuggestion && extractActionSuggestion) {
+                const result = extractActionSuggestion(msg.content);
+                suggestionText = result !== null ? result : undefined;
+              }
               return (
                 <MessageBubble
                   key={msg.id}
